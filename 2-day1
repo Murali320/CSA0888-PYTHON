@@ -1,0 +1,21 @@
+def sumsquare(l):
+    odd_sum = 0
+    even_sum = 0
+
+    for num in l:
+        if num % 2 == 0:
+            even_sum += num ** 2
+        else:
+            odd_sum += num ** 2
+
+    return [odd_sum, even_sum]
+test_cases = [
+    [1, 2, 3, 4, 5],
+    [2, 4, 5, 6, 7, 11, 12, 13],
+    [12, 10, 11, 1, 2],
+    [1, 2, 3, 4, 5],
+    [2, 4, 5, 6, 7, 11, 12, 13]
+]
+for i, test_case in enumerate(test_cases, start=1):
+    result = sumsquare(test_case)
+    print(f"Test Case {i}: {result}")
