@@ -1,0 +1,23 @@
+def isIsomorphic(s, t):
+    if len(s) != len(t):
+        return False
+    s_to_t_mapping = {}
+    t_to_s_mapping = {}
+    for i in range(len(s)):
+        s_char, t_char = s[i], t[i]
+        if s_char in s_to_t_mapping:
+            if s_to_t_mapping[s_char] != t_char:
+                return False
+        else:
+            s_to_t_mapping[s_char] = t_char
+        if t_char in t_to_s_mapping:
+            if t_to_s_mapping[t_char] != s_char:
+                return False
+        else:
+            t_to_s_mapping[t_char] = s_char
+    return True
+print(isIsomorphic("egg", "add"))      
+print(isIsomorphic("foo", "bar"))     
+print(isIsomorphic("paper", "title"))
+print(isIsomorphic("fry", "sky"))    
+print(isIsomorphic("apples", "apple")) 
