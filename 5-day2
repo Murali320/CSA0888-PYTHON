@@ -1,0 +1,50 @@
+class Solution:
+    def calculate(self, character_string):
+        str_len = len(character_string)
+        #            
+        stack = []
+        preSign = '+'
+        num = 0
+        i = 0
+                 While i <str_len: # w w traversed by the counter traversing
+            char = character_string[i]
+                         if char == '': # i i
+                i = i + 1
+                continue
+                         if char.isdigit (): # If it is a number
+                num = num * 10 + int(char)
+
+                         # If you encounter left brackets, recursively find the value of expression in parentheses
+            if char == '(':
+                j = i + 1
+                counts = 1
+                                 # The value of the parentheses expression
+                while counts > 0:
+                	                 # This place is very clever, using counts to match the expression in the bracket
+                    if character_string[j] == "(":
+                        counts = counts + 1
+                    if character_string[j] == ")":
+                        counts = counts - 1
+                    j = j + 1
+                                 #
+                num = self.calculate(character_string[i + 1:j - 1])
+                i = j - 1
+
+            if not char.isdigit() or i == str_len - 1:
+                if preSign == "+":
+                    stack.append(num)
+                elif preSign == "-":
+                    stack.append(-1 * num)
+                elif preSign == "*":
+                    tmp = stack.pop()
+                    stack.append(tmp * num)
+
+                num = 0
+                preSign = char
+            i = i + 1
+        return sum(stack)
+
+
+if __name__ == "__main__":
+    s = Solution()
+	print(s.calculate("(3+4)*(5+(2-3))"))
