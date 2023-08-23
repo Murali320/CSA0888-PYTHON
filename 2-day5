@@ -1,0 +1,10 @@
+print ("enter salary")
+salary = input()
+print ("enter year of service")
+yos = input()
+if yos>5:
+    print ("bonus is"),0.05*salary
+elif yos>10:
+    print("bonus is"),0.10*salary
+else:
+    print ("no bonus")
