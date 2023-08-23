@@ -1,0 +1,45 @@
+def isNumber(s):
+    states = [
+        {},
+        {'blank': 1, 'sign': 2, 'digit': 3, '.': 4},
+        {'digit': 3, '.': 4},
+        {'digit': 3, '.': 5, 'e': 6, 'blank': 9},
+        {'digit': 5},
+        {'digit': 5, 'e': 6, 'blank': 9},
+        {'sign': 7, 'digit': 8},
+        {'digit': 8},
+        {'digit': 8, 'blank': 9},
+        {'blank': 9}
+    ]
+
+    currentState = 1
+
+    for char in s:
+        if char.isdigit():
+            charType = 'digit'
+        elif char in "+-":
+            charType = 'sign'
+        elif char == " ":
+            charType = 'blank'
+        elif char == ".":
+            charType = '.'
+        elif char == "e" or char == "E":
+            charType = 'e'
+        else:
+            return False
+
+        if charType not in states[currentState]:
+            return False
+        currentState = states[currentState][charType]
+
+    if currentState in [3, 5, 8, 9]:
+        return True
+    return False
+
+# Test cases
+test_cases = ["0", "e", " ", ".", "%"]
+
+for s in test_cases:
+    print(f"Input: s = '{s}'")
+    print("Output:", isNumber(s))
+    print()
